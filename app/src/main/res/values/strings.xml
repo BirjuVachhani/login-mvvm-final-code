@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Login MVVM</string>
+    <string name="login">Login</string>
+    <string name="terms_and_conditions">By logging in, you\'re accepting our <font color="#ff4433"><b>terms and conditions</b></font> and <font color="#ff4433"><b>privacy policy</b></font> to use our service.</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="desc">login to continue with our service</string>
+    <string name="sample_example_com">sample@example.com</string>
+    <string name="welcome">Welcome</string>
+    <string name="home_desc">Feel free to use our services</string>
+    <string name="got_what_you_needed">Got what you needed?</string>
+</resources>
