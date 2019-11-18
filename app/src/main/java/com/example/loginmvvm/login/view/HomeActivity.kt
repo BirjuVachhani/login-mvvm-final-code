@@ -1,19 +1,19 @@
 package com.example.loginmvvm.login.view
 
 import android.content.Intent
-import android.os.Bundle
+import android.content.SharedPreferences
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.loginmvvm.R
+import org.koin.android.ext.android.inject
 
 class HomeActivity : AppCompatActivity(R.layout.activity_home) {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private val pref: SharedPreferences by inject()
 
     fun onLogoutButtonPressed(v: View) {
-        startActivity(Intent(this, MainActivity::class.java))
+        pref.edit().remove("token").commit()
+        startActivity(Intent(this, LoginActivity::class.java))
         finish()
     }
 }
