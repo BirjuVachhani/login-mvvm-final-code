@@ -57,11 +57,11 @@ class LoginActivityVM(private val dispatchers: DispatcherProvider = DefaultDispa
         }, {
             val error = when (it) {
                 is HttpException -> {
-                    it.response()?.errorBody()?.string()?.let {
-                        Gson().fromJson(it, LoginError::class.java).error
+                    it.response()?.errorBody()?.string()?.let { error ->
+                        Gson().fromJson(error, LoginError::class.java).error
                     } ?: "something went wrong"
                 }
-                else -> it.message.toString()
+                else -> "Something went wrong!"
             }
             state.postValue(LoginScreenState.LoginFailure(error))
         })

@@ -14,6 +14,6 @@ import retrofit2.http.POST
 interface ApiService {
 
     @POST(Api.LOGIN_PATH)
-    fun login(@Body request: LoginRequest): LoginResponse
+    suspend fun login(@Body request: LoginRequest): LoginResponse
 
 }
