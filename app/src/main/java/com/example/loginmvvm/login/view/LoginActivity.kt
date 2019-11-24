@@ -5,9 +5,10 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.observe
 import com.example.loginmvvm.R
+import com.example.loginmvvm.databinding.LoginActivityBinding
+import com.example.loginmvvm.login.base.BaseActivity
 import com.example.loginmvvm.login.state.LoginScreenState
 import com.example.loginmvvm.login.viewmodel.LoginActivityVM
 import com.google.android.material.snackbar.Snackbar
@@ -15,9 +16,9 @@ import kotlinx.android.synthetic.main.activity_login.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class LoginActivity : AppCompatActivity(R.layout.activity_login) {
+class LoginActivity : BaseActivity<LoginActivityVM, LoginActivityBinding>(R.layout.activity_login) {
 
-    private val viewModel: LoginActivityVM by viewModel()
+    override val viewModel: LoginActivityVM by viewModel()
     private val pref: SharedPreferences by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,16 +35,10 @@ class LoginActivity : AppCompatActivity(R.layout.activity_login) {
 
         etPassword.setOnEditorActionListener { v, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                onLoginButtonPressed(v)
+                btnLogin.performClick()
                 true
             } else false
         }
-    }
-
-    fun onLoginButtonPressed(v: View) {
-        val email = etEmail.text.toString()
-        val password = etPassword.text.toString()
-        viewModel.login(email, password)
     }
 
     private fun renderState(state: LoginScreenState) = state.run {

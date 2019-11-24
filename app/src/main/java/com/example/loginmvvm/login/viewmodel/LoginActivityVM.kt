@@ -2,17 +2,16 @@ package com.example.loginmvvm.login.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.loginmvvm.DefaultDispatcherProvider
 import com.example.loginmvvm.DispatcherProvider
+import com.example.loginmvvm.login.base.BaseVM
 import com.example.loginmvvm.login.model.remote.ApiService
 import com.example.loginmvvm.login.model.remote.error.LoginError
 import com.example.loginmvvm.login.model.remote.request.LoginRequest
 import com.example.loginmvvm.login.state.LoginScreenState
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
-import org.koin.core.KoinComponent
 import org.koin.core.inject
 import retrofit2.HttpException
 import java.util.regex.Pattern
@@ -23,18 +22,18 @@ import java.util.regex.Pattern
  */
 
 class LoginActivityVM(private val dispatchers: DispatcherProvider = DefaultDispatcherProvider()) :
-    ViewModel(),
-    KoinComponent {
+    BaseVM() {
 
     private val emailPattern: Pattern by inject()
     private val apiService: ApiService by inject()
+    val emailLiveData = MutableLiveData<String>("")
+    val passwordLiveData = MutableLiveData<String>("")
 
     private val state = MutableLiveData<LoginScreenState>(LoginScreenState.Initial)
 
     fun state(): LiveData<LoginScreenState> = state
 
     fun login(email: String, password: String) = viewModelScope.launch(dispatchers.default()) {
-
         if (email.isBlank()) {
             state.postValue(LoginScreenState.EmailValidationError("Email cannot be empty"))
             return@launch

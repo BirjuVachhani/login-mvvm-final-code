@@ -6,6 +6,6 @@ package com.example.loginmvvm.login.model
  */
 
 object Api {
-    const val BASE_URL = "http://172.16.1.188:8080/"
+    const val BASE_URL = "http://192.168.43.173:8080/"
     const val LOGIN_PATH = "login"
 }

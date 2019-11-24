@@ -11,7 +11,7 @@ object Core {
 }
 
 object AndroidX {
-    const val constraintLayout = ""
+    const val constraintLayout = "androidx.constraintlayout:constraintlayout:1.1.3"
     const val appCompat = "androidx.appcompat:appcompat:1.1.0"
     const val recyclerView = "androidx.recyclerview:recyclerview:1.0.0"
     const val recyclerViewSelection = "androidx.recyclerview:recyclerview-selection:1.0.0"
@@ -34,10 +34,13 @@ object AndroidX {
     const val drawerLayout = "androidx.drawerlayout:drawerlayout:1.0.0"
     const val materialDesign = "com.google.android.material:material:1.0.0"
     const val browser = "androidx.browser:browser:1.0.0"
+    const val archTest = "androidx.arch.core:core-testing:2.1.0"
+
 }
 
-object Test {
-    const val junit4 = "junit:junit:4.12"
+object JUnit {
+    const val core = "junit:junit:4.12"
+    const val extensions = "androidx.test.ext:junit:1.1.1"
 }
 
 object Espresso {
@@ -129,9 +132,43 @@ object Lifecycle {
         get() = "androidx.lifecycle:lifecycle-viewmodel:$version"
 }
 
+object OkHttp {
+    const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.2.1"
+}
+
+object Retrofit {
+    var version = "2.6.0"
+    @JvmStatic
+    val core
+        get() = "com.squareup.retrofit2:retrofit:$version"
+    @JvmStatic
+    val gsonConverter
+        get() = "com.squareup.retrofit2:converter-gson:$version"
+}
+
+object Koin {
+    var version = "2.0.1"
+    @JvmStatic
+    val core = "org.koin:koin-android:$version"
+    @JvmStatic
+    val scope = "org.koin:koin-android-scope:$version"
+    @JvmStatic
+    val viewModel
+        get() = "org.koin:koin-android-viewmodel:$version"
+    @JvmStatic
+    val test
+        get() = "org.koin:koin-test:$version"
+}
+
+object Mockito {
+    const val core = "org.mockito:mockito-core:2.28.2"
+}
+
 object KTX {
     const val core = "androidx.core:core-ktx:1.0.1"
     const val palette = "androidx.palette:palette-ktx:1.0.0"
+    const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:2.1.0"
+    const val activity = "androidx.activity:activity-ktx:1.1.0-rc02"
     const val collection = "androidx.collection:collection-ktx:1.1.0"
     const val sqlite = "androidx.sqlite:sqlite-ktx:2.0.1"
     const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0"
@@ -150,6 +187,12 @@ object KTX {
         val ui: String
             get() = "androidx.navigation:navigation-ui-ktx:$version"
     }
+}
+
+object Coroutines {
+    const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.2"
+    const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2"
+    const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.2"
 }
 
 object AndroidTest {

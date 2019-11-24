@@ -79,10 +79,13 @@ class ExampleUnitTest : KoinTest {
     }
 
     @Test
-    fun `successful login api test`() = runBlockingTest {
+    fun `successful login api test`() = coroutinesTestRule.testDispatcher.runBlockingTest {
         Mockito.doReturn(true).`when`(matcher).matches()
         viewModel.state().observeForever {}
-        viewModel.login("admin@gmail.com", "12345678")
+        viewModel.login(
+            "admin@gmail.com",
+            "123                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    45678"
+        )
         Thread.sleep(2000)
         assert(viewModel.state().value is LoginScreenState.LoginSuccess)
     }
